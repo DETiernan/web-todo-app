@@ -1,9 +1,13 @@
 # This program creates a todolist in a file
+import time
+
 def get_todos(filepath):
     with open(filepath, 'r') as file:
         todos = file.readlines()
     return todos
 
+
+now = time.strftime("%b %d, %Y %H:%M:%S")
 
 while True:
     # Get user input and strip space chars from it
