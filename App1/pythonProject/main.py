@@ -34,7 +34,6 @@ while True:
 
     elif user_action.startswith("edit"):
         todos = get_todos('files/todos.txt')
-
         # change a list item in a file
         number = int(input("Number of todo to edit: "))
         number = number -1
