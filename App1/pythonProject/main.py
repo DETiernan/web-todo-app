@@ -8,6 +8,7 @@ def get_todos(filepath):
 
 
 now = time.strftime("%b %d, %Y %H:%M:%S")
+print("It is now", now)
 
 while True:
     # Get user input and strip space chars from it
