@@ -1,19 +1,7 @@
 # This program creates a todolist in a file
+from functions import get_todos, write_todos
 import time
-
-def get_todos(filepath="todos.txt"):
-    """ Read a text file and return the list of
-    do-do items.
-    """
-    with open(filepath, 'r') as file_local:
-        todos_local = file_local.readlines()
-    return todos_local
-
-def write_todos(todos_arg, filepath="todos.txt"):
-    """ Write the to-dos items list in the text file. """
-    with open(filepath, 'w') as file:
-        file.writelines(todos_arg)
-
+# import functions
 
 now = time.strftime("%b %d, %Y %H:%M:%S")
 print("It is now", now)
@@ -29,7 +17,7 @@ while True:
         todos = get_todos('files/todos.txt')
         todos.append(todo + '\n')
         with open('files/todos.txt', 'w') as file:
-                file.writelines(todos)
+            file.writelines(todos)
 
     elif user_action.startswith("show"):
         # get list from a file
@@ -44,7 +32,7 @@ while True:
         todos = get_todos('files/todos.txt')
         # change a list item in a file
         number = int(input("Number of todo to edit: "))
-        number = number -1
+        number = number - 1
         new_todo = input("Enter new todo: ")
         todos[number] = new_todo
 
