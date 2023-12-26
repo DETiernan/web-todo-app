@@ -1,4 +1,3 @@
 cat
 mouse
-Rabbit
 Dog

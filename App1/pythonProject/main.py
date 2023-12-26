@@ -16,8 +16,7 @@ while True:
         todo = user_action[4:]
         todos = get_todos('files/todos.txt')
         todos.append(todo + '\n')
-        with open('files/todos.txt', 'w') as file:
-            file.writelines(todos)
+        write_todos("files/todos.txt", todos)
 
     elif user_action.startswith("show"):
         # get list from a file
@@ -29,26 +28,32 @@ while True:
             print(row)
 
     elif user_action.startswith("edit"):
-        todos = get_todos('files/todos.txt')
         # change a list item in a file
-        number = int(input("Number of todo to edit: "))
-        number = number - 1
-        new_todo = input("Enter new todo: ")
-        todos[number] = new_todo
+        try:
+            number = int(user_action[5:])
+            print(number)
+            number = number - 1
+            todos = get_todos('files/todos.txt')
+            new_todo = input("Enter new todo: ")
+            todos[number] = new_todo + '\n'
 
-        file = open('files/todos.txt', 'w')
-        file.writelines(todos)
-        file.close()
+            write_todos("files/todos.txt", todos)
+        except ValueError:
+            print("Your command is invalid")
+            continue
 
-    elif user_action.startswith("remove"):
-        todos = get_todos('files/todos.txt')
-
-        number = int(input("Number of the todo to remove: "))
-        todos.pop(number - 1)
-
-        file = open('files/todos.txt', 'w')
-        file.writelines(todos)
-        file.close()
+    elif user_action.startswith("complete"):
+        try:
+            number = int(user_action[9:])
+            todos = get_todos('files/todos.txt')
+            index = number - 1
+            todo_to_remove = todos[index].strip('\n')
+            todos.pop(index)
+            message = f"Todo {todo_to_remove} was removed from the list."
+            print(message)
+        except IndexError:
+            print("There is no item with that number.")
+            continue
 
     elif user_action.startswith("exit"):
         break
