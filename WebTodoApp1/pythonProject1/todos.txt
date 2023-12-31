@@ -3,3 +3,4 @@ clean the dishes
 clean garage
 get paper
 get food
+get milk
