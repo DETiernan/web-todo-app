@@ -2,7 +2,7 @@ import functions
 import PySimpleGUI as sg
 import time
 
-sg.theme("Dark Amber 5")
+sg.theme("DarkBlue")
 
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do")
@@ -28,7 +28,7 @@ while True:
     match event:
         case "Add":
             todos = functions.get_todos()
-            new_todo = values['todo'] + '\n'
+            new_todo = values['todo'] + "\n"
             todos.append(new_todo)
             functions.write_todos(todos)
             window['todos'].update(values=todos)
@@ -37,14 +37,17 @@ while True:
             try:
                 todo_to_edit = values['todos'][0]
                 new_todo = values['todo']
+                new_todo.strip("\n")
 
                 todos = functions.get_todos()
                 index = todos.index(todo_to_edit)
-                todos[index] = new_todo
+                todos[index] = new_todo + "\n"
                 functions.write_todos(todos)
                 window['todos'].update(values=todos)
             except IndexError:
                 sg.popup("Please select an item first", font=("Helvetica",20))
+            except ValueError:
+                sg.popup("Please try again", font=("Helvetica",20))
         case "Complete":
             try:
                 todo_to_complete = values['todos'][0]
