@@ -2,6 +2,8 @@ import functions
 import PySimpleGUI as sg
 import time
 
+sg.theme("Dark Amber 5")
+
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter to-do", key="todo")
@@ -22,10 +24,7 @@ window = sg.Window('My To-Do App',
 while True:
     event, values = window.read(timeout=200)
     window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
-    print(1, event)
-    print(2, values)
-    print(3, values['todos'])
-    # print(values['todo'])
+
     match event:
         case "Add":
             todos = functions.get_todos()
