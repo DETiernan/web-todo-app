@@ -1,4 +1,5 @@
 Do the laundry
-clean the dishes
-clean garage
-clean dishes
+Do the dishes
+Clean the garage
+Tidy office
+Upload code to streamlit
